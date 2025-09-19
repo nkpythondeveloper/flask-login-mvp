@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or "Flask Login System" }}</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { poppins: ['Poppins', 'sans-serif'] },
+          colors: { brand: '#4f46e5' }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+  </style>
+
+</head>
+<body class="bg-purple-50">
+    <nav class="bg-white border-b border-slate-200">
+        <div class="container mx-auto px-4 py-3 flex items-center gap-4">
+            <a href="{{ url_for('landing.landing') }}" class="font-semibold">Login Application</a>
+            {% if current_user.is_authenticated %}
+            <div class="ml-auto flex gap-3">
+                <a class="text-blue-600 hover:underline" href="{{ url_for('auth.logout') }}">Logout</a>
+            </div>
+            {% else %}
+            <div class="ml-auto flex gap-3">
+                <a class="text-blue-600 hover:underline" href="{{ url_for('auth.register') }}">Register</a>
+                <a class="text-blue-600 hover:underline" href="{{ url_for('auth.login') }}">Login</a>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+    <main class="flex min-h-screen flex-col items-center justify-center px-4 text-center">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <div class="space-y-2 mb-4">
+            {% for category, message in messages %}
+                <div class="p-3 rounded border
+                            {% if category=='success' %}border-green-300 bg-green-50
+                            {% elif category=='warning' %}border-yellow-300 bg-yellow-50
+                            {% elif category=='danger' %}border-red-300 bg-red-50
+                            {% else %}border-slate-300 bg-white{% endif %}">
+                {{ message }}
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

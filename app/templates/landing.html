@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple Login Landing</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { poppins: ['Poppins', 'sans-serif'] },
+          colors: { brand: '#4f46e5' }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+  </style>
+</head>
+<body class="bg-purple-50">
+    <nav class="bg-white border-b border-slate-200">
+        <div class="container mx-auto px-4 py-3 flex items-center gap-4">
+            <a href="{{ url_for('landing.landing') }}" class="font-semibold">Login Application</a>
+            <div class="ml-auto flex gap-3">
+                <a class="text-blue-600 hover:underline" href="{{ url_for('auth.register') }}">Register</a>
+                <a class="text-blue-600 hover:underline" href="{{ url_for('auth.login') }}">Login</a>
+            </div>
+        </div>
+    </nav>
+    <main class="flex min-h-screen flex-col items-center justify-center px-4 text-center">
+    <h1 class="text-4xl font-semibold text-slate-900 sm:text-5xl">
+      Welcome to <span class="text-brand">LoginApp</span>
+    </h1>
+    <p class="mt-4 max-w-xl text-slate-600">
+      A simple and secure login functionality for your web application.
+    </p>
+    <a href="{{ url_for('auth.login') }}"
+       class="mt-8 inline-block rounded-lg bg-brand px-6 py-3 text-white font-medium hover:bg-indigo-700">
+      Login
+    </a>
+  </main>
+</body>
+</html>

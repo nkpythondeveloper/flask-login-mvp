@@ -1,0 +1,5 @@
+class Config:
+    SECRET_KEY = "8de7979637217e5f6a255a7806349081"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///loginexample.db"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    WTF_CSRF_ENABLED = True
